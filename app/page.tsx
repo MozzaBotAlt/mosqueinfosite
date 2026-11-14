@@ -21,7 +21,7 @@ const initialImams = [
 const initialAnnouncements = ['Kuliah Maghrib malam ini bersama Ustaz Ahmad Firdaus', 'Sumbangan tabung Ramadan kini dibuka di pejabat masjid']
 
 export default function Page() {
-  const [now, setNow] = useState(new Date())
+  const [now, setNow] = useState(() => new Date(0))
   const [adminOpen, setAdminOpen] = useState(false)
   const [slide, setSlide] = useState(0)
   const [imams, setImams] = useState(initialImams)
@@ -29,6 +29,7 @@ export default function Page() {
   const [draft, setDraft] = useState('')
 
   useEffect(() => {
+    setNow(new Date())
     const clock = window.setInterval(() => setNow(new Date()), 1000)
     const carousel = window.setInterval(() => setSlide((current) => (current + 1) % 3), 9000)
     return () => { window.clearInterval(clock); window.clearInterval(carousel) }
