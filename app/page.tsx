@@ -36,6 +36,10 @@ export default function Page() {
 
   const malaysiaTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kuala_Lumpur' }))
   const dateLabel = new Intl.DateTimeFormat('en-MY', { timeZone: 'Asia/Kuala_Lumpur', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(now)
+  const hijriParts = new Intl.DateTimeFormat('en-MY-u-ca-islamic-umalqura', { timeZone: 'Asia/Kuala_Lumpur', day: 'numeric', month: 'long', year: 'numeric' }).formatToParts(now)
+  const hijriDay = hijriParts.find((part) => part.type === 'day')?.value
+  const hijriMonth = hijriParts.find((part) => part.type === 'month')?.value
+  const hijriYear = hijriParts.find((part) => part.type === 'year')?.value
   const timeLabel = new Intl.DateTimeFormat('en-MY', { timeZone: 'Asia/Kuala_Lumpur', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(now)
   const slides = [
     { eyebrow: 'MASJID AL-HIDAYAH  ·  KUALA LUMPUR', title: 'A place to pause.\nA place to belong.', text: 'May every step towards the masjid bring peace to your heart.', image: '/mosque-dusk.png' },
@@ -55,7 +59,7 @@ export default function Page() {
         <aside className="announcement-rail">
           <div className="rail-heading"><span className="live-dot" /><span>MAKLUMAN</span><Bell size={15} /></div>
           <div className="rail-date">{dateLabel}</div>
-          <div className="hijri-card"><div className="hijri-label">HARI INI · HIJRI</div><div className="hijri-date">٢٨ <span>Safar</span></div><div className="hijri-year">1448 H</div><div className="hijri-divider"/><div className="gregorian-small"><CalendarDays size={14}/><span>{new Intl.DateTimeFormat('en-MY', {timeZone:'Asia/Kuala_Lumpur', day:'numeric', month:'short', year:'numeric'}).format(now)}</span></div></div>
+          <div className="hijri-card"><div className="hijri-label">HARI INI · HIJRI</div><div className="hijri-date">{hijriDay} <span>{hijriMonth}</span></div><div className="hijri-year">{hijriYear} H</div><div className="hijri-divider"/><div className="gregorian-small"><CalendarDays size={14}/><span>{new Intl.DateTimeFormat('en-MY', {timeZone:'Asia/Kuala_Lumpur', day:'numeric', month:'short', year:'numeric'}).format(now)}</span></div></div>
           <div className="announcements"><div className="section-label">PENGUMUMAN <span className="label-line" /></div>
             {announcements.map((item, index) => <article className="announcement" key={`${item}-${index}`}><div className="announcement-index">0{index + 1}</div><p>{item}</p><div className="announcement-time">{index === 0 ? 'HARI INI · 8:00 MALAM' : 'MAKLUMAN UMUM'}</div></article>)}
           </div>
