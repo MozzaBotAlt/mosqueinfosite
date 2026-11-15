@@ -3,26 +3,8 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Masjid Al-Hidayah | Waktu Solat & Makluman',
-  description: 'Paparan maklumat masjid, waktu solat, jadual imam dan pengumuman komuniti di Kuala Lumpur.',
-  generator: 'v0.app',
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
-  },
+  title: 'Surau Raudhatul Muntaqim | Waktu Solat & Makluman',
+  description: 'Paparan maklumat masjid, waktu solat, jadual imam dan pengumuman.',
 }
 
 export const viewport: Viewport = {
